@@ -29,10 +29,10 @@ if(isset($_GET['length']) && $_GET['length'] !== '') {
 <main class="container">
         <h1 class="d-flex justify-content-center my-4">Strong Password Generator</h1>
         <form action="./index.php" method="GET">
-            <div class="input-group my-4">
-                <label for="lunghezza">Qui puoi specificare quanto lunga deve essere la tua password (da 8 a 30 caratteri):</label>
-                <input type="number" name="length" min="8" max="30" class="form-control mx-2" id="lunghezza" placeholder="Lunghezza">
-                <button class="btn btn-primary" type="submit">Genera</button>
+            <div class="my-4">
+                <label for="lunghezza" class="form-label">Qui puoi specificare quanto lunga deve essere la tua password (da 8 a 30 caratteri):</label>
+                <input type="number" name="length" min="8" max="30" class="form-control" id="lunghezza" placeholder="Lunghezza">
+                <button class="btn btn-primary mt-2" type="submit">Genera</button>
             </div>
             <?php if(isset($urPassword)){ ?>
                 <div>La tua password è: <strong><?php echo $urPassword ?></strong></div>
