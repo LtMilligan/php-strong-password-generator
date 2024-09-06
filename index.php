@@ -1,5 +1,18 @@
 <?php
 
+function passwordGenerator($length) {
+    $keys = array_merge(range(0, 9), range('A', 'z'));
+    
+    $psswrd = '';
+    for($i=0; $i < $length; $i++) {
+        $psswrd .= $keys[mt_rand(0, count($keys) - 1)];
+    }
+    return $psswrd;
+}
+
+if(isset($_GET['length']) && $_GET['length'] !== '') {
+    $urPassword = passwordGenerator($_GET['length']);
+}
 
 ?>
 
@@ -15,13 +28,15 @@
 <body>
 <main class="container">
         <h1 class="d-flex justify-content-center my-4">Strong Password Generator</h1>
-        <form action="" method="get">
+        <form action="./index.php" method="GET">
             <div class="input-group my-4">
-                <label for="lunghezza">Qui puoi specificare quanto lunga deve essere la tua password (da 5 a 30 caratteri):</label>
-                <input type="number" name="length" min="5" max="30" class="form-control mx-2" id="lunghezza" placeholder="Lunghezza">
-                <button class="btn btn-primary" type="button">Genera</button>
+                <label for="lunghezza">Qui puoi specificare quanto lunga deve essere la tua password (da 8 a 30 caratteri):</label>
+                <input type="number" name="length" min="8" max="30" class="form-control mx-2" id="lunghezza" placeholder="Lunghezza">
+                <button class="btn btn-primary" type="submit">Genera</button>
             </div>
-            <div><?php echo " La tua password è:" ?></div>
+            <?php if(isset($urPassword)){ ?>
+                <div>La tua password è: <strong><?php echo $urPassword ?></strong></div>
+           <?php } ?>
         </form>
     </main>
 </body>
